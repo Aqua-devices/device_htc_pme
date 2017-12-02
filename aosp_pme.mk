@@ -14,14 +14,8 @@
 #
 IS_ARM64 := true
 
-# Include Official OTA Package
-WITH_OFFICIALOTA := true
-
-# Support Beta OTA Opt-in (Requires additional ota xml)
-BETA_OTA := true
-
 # Include pure telephony configuration
-$(call inherit-product, vendor/pure/configs/pure_phone.mk)
+$(call inherit-product, vendor/aquarios/config/common_full_phone.mk)
 
 # Inherit from the common Open Source product configuration
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
@@ -35,7 +29,7 @@ $(call inherit-product, device/htc/pme/device.mk)
 # $(call inherit-product, vendor/aosp/common.mk)
 
 PRODUCT_DEVICE := pme
-PRODUCT_NAME := pme
+PRODUCT_NAME := aquarios_pme
 PRODUCT_BRAND := HTC
 PRODUCT_MODEL := HTC 10
 PRODUCT_MANUFACTURER := HTC

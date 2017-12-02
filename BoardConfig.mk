@@ -32,7 +32,7 @@ TARGET_CPU_ABI2 :=
 TARGET_CPU_VARIANT := kryo
 
 TARGET_2ND_ARCH := arm
-TARGET_2ND_ARCH_VARIANT := armv8-a
+TARGET_2ND_ARCH_VARIANT := armv7-a-neon
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := kryo
@@ -70,7 +70,7 @@ TARGET_KERNEL_SOURCE := kernel/htc/msm8996
 TARGET_KERNEL_CONFIG := pme_defconfig
 # TARGET_USES_UNCOMPRESSED_KERNEL := false
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
-#KERNEL_TOOLCHAIN_PREFIX :=$(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/aarch64/aarch64-linux-android-6.x/bin/aarch64-linux-android-
+KERNEL_TOOLCHAIN_PREFIX :=$(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/aarch64/aarch64-linux-android-6.x/bin/aarch64-linux-android-
 
 # Audio
 #AUDIO_FEATURE_ENABLED_AAC_ADTS_OFFLOAD := true
