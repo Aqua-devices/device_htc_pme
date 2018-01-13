@@ -36,7 +36,7 @@
 #include <android-base/properties.h>
 #include "vendor_init.h"
 #include "property_service.h"
-#include "log.h"
+#include "android-base/logging.h"
 #include "util.h"
 
 /* Device specific properties */
@@ -96,7 +96,7 @@ static void load_properties(const char *original_data)
 
         while (isspace(*value)) value++;
 
-        property_set(key, value);
+        android::init::property_set(key, value);
     }
 
     free(data);
@@ -136,7 +136,7 @@ void vendor_load_properties()
     } else if (is_variant_verizon(bootcid)) {
         load_properties(htc_verizon_properties);
     } else {
-        property_set("ro.lineage.invalid_bootcid", bootcid.c_str());
+        android::init::property_set("ro.lineage.invalid_bootcid", bootcid.c_str());
         if (bootmid == "2PS620000") {
             load_properties(htc_europe_properties);
         } else {

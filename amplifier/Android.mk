@@ -8,7 +8,7 @@ LOCAL_SHARED_LIBRARIES := \
 LOCAL_C_INCLUDES := \
         external/tinyalsa/include \
        hardware/libhardware/include \
-       $(call project-path-for,qcom-audio)/hal
+       hardware/qcom/audio-gz-msm8996/hal
 
 LOCAL_SRC_FILES := \
 	audio_amplifier.c tfa.c

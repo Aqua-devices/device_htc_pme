@@ -19,7 +19,7 @@ $(call inherit-product, device/htc/pme/aosp_pme.mk)
 # Set those variables here to overwrite the inherited values.
 
 PRODUCT_DEVICE := pme
-PRODUCT_NAME := aquarios_pme
+PRODUCT_NAME := pme
 PRODUCT_BRAND := HTC
 PRODUCT_MODEL := HTC 10
 PRODUCT_MANUFACTURER := HTC
