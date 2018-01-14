@@ -67,11 +67,11 @@ TARGET_KERNEL_CONFIG := pme_defconfig
 KERNEL_TOOLCHAIN_PREFIX :=$(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/aarch64/aarch64-linux-android-6.x/bin/aarch64-linux-android-
 
 # display
-TARGET_QCOM_DISPLAY_VARIANT := gz-msm8994
+TARGET_QCOM_DISPLAY_VARIANT := caf-msm8994
 
 # Audio/media
-TARGET_QCOM_AUDIO_VARIANT := gz-msm8994
-TARGET_QCOM_MEDIA_VARIANT := gz-msm8994
+TARGET_QCOM_AUDIO_VARIANT := caf-msm8994
+TARGET_QCOM_MEDIA_VARIANT := caf-msm8994
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
