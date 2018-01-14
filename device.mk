@@ -1,4 +1,5 @@
 #
+# Copyright (C) 2017 Pure Fusion OS
 # Copyright (C) 2016 The CyanogenMod Project
 # Copyright (C) 2017 The LineageOS Project
 #
@@ -21,6 +22,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # Get non-open-source specific aspects
 $(call inherit-product-if-exists, vendor/htc/pme/pme-vendor.mk)
+
+$(call inherit-product, $(LOCAL_PATH)/audio/audio.mk)
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
@@ -70,43 +73,17 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
     $(LOCAL_PATH)/configs/com.htc.software.market.xml:system/etc/permissions/com.htc.software.market.xml
 
-# Audio
-PRODUCT_PACKAGES += \
-    android.hardware.audio@2.0-impl \
-    android.hardware.audio.effect@2.0-impl \
-    android.hardware.soundtrigger@2.0-impl \
-    audiod \
-    audio.a2dp.default \
-    audio.primary.msm8996 \
-    audio.r_submix.default \
-    audio.usb.default \
-    audio_amplifier.msm8996 \
-    libaudio-resampler \
-    libqcompostprocbundle \
-    libqcomvisualizer \
-    libqcomvoiceprocessing \
-    libvolumelistener \
-    tinymix
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/audio/audio_effects.conf:system/vendor/etc/audio_effects.conf \
-    $(LOCAL_PATH)/audio/audio_output_policy.conf:system/vendor/etc/audio_output_policy.conf \
-    $(LOCAL_PATH)/audio/audio_platform_info.xml:system/etc/audio_platform_info.xml \
-    $(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf \
-    $(LOCAL_PATH)/audio/listen_platform_info.xml:system/etc/listen_platform_info.xml \
-    $(LOCAL_PATH)/audio/mixer_paths_tasha.xml:system/etc/mixer_paths_tasha.xml \
-    $(LOCAL_PATH)/audio/sound_trigger_mixer_paths.xml:system/etc/sound_trigger_mixer_paths.xml \
-    $(LOCAL_PATH)/audio/sound_trigger_mixer_paths_wcd9330.xml:system/etc/sound_trigger_mixer_paths_wcd9330.xml \
-    $(LOCAL_PATH)/audio/sound_trigger_platform_info.xml:system/etc/sound_trigger_platform_info.xml
-
 # Bluetooth
 PRODUCT_PACKAGES += \
-		android.hardware.bluetooth@1.0-impl \
-		android.hardware.bluetooth@1.0-service \
-		libbt-vendor
+    android.hardware.bluetooth@1.0-impl \
+    android.hardware.bluetooth@1.0-service \
+    libbt-vendor
 
 # AptX/AptX HD bluetooth codec
 APTX_HD := true
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
 
 # Camera
 PRODUCT_PACKAGES += \
@@ -114,9 +91,8 @@ PRODUCT_PACKAGES += \
     libcameraface \
     libshim_camera
 
-TARGET_USES_GOOGLE_CAMERA := true
-#TARGET_USES_OP_CAMERA := true
 TARGET_USES_SNAP_CAMERA := true
+
 # Connectivity Engine support (CNE)
 PRODUCT_PACKAGES += \
     cneapiclient \
@@ -139,6 +115,9 @@ PRODUCT_PACKAGES += \
     libjni_livedisplay \
     liboverlay \
     libtinyxml
+
+PRODUCT_PACKAGES += \
+    android.hardware.configstore@1.0-service
 
 # DRM
 PRODUCT_PACKAGES += \
@@ -193,6 +172,7 @@ PRODUCT_PACKAGES += \
 
 # HIDL
 PRODUCT_PACKAGES += \
+    android.hidl.base@1.0 \
     android.hidl.manager@1.0-java
 
 # HTC Logging functions
@@ -229,14 +209,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
     $(LOCAL_PATH)/keylayout/cypress-cap-sensor.kl:system/usr/keylayout/cypress-cap-sensor.kl
 
-# IPACM
-PRODUCT_PACKAGES += \
-    IPACM_cfg.xml \
-    ipacm
-
 # IRQ
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/msm_irqbalance.conf:system/vendor/etc/msm_irqbalance.conf
+    $(LOCAL_PATH)/configs/msm_irqbalance.conf:$(TARGET_COPY_OUT_VENDOR)/etc/msm_irqbalance.conf
 
 # IRSC
 PRODUCT_COPY_FILES += \
@@ -255,24 +230,20 @@ PRODUCT_PACKAGES += \
 
 # Media
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
-    $(LOCAL_PATH)/configs/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
-    $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
+    $(LOCAL_PATH)/configs/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml \
+    $(LOCAL_PATH)/configs/media_codecs_performance.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance.xml \
+    $(LOCAL_PATH)/configs/media_profiles_V1_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_V1_0.xml
 
 PRODUCT_COPY_FILES += \
-    frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
+    frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_audio.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_telephony.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_video.xml
 
 # Net
 PRODUCT_PACKAGES += \
     android.system.net.netd@1.0 \
-    netutils-wrapper-1.0
-
-# Net
-PRODUCT_PACKAGES += \
-    android.system.net.netd@1.0 \
-    netutils-wrapper-1.0
+    netutils-wrapper-1.0 \
+    libandroid_net
 
 # NFC
 PRODUCT_PACKAGES += \
@@ -289,11 +260,7 @@ PRODUCT_COPY_FILES += \
 
 # Performance / IOP
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/etc/public.libraries.txt:system/vendor/etc/public.libraries.txt
-
-# Enable build to use ffmpeg
-WITH_FFMPEG := true
-DOLBY_ENABLE := true
+    $(LOCAL_PATH)/rootdir/etc/public.libraries.txt:$(TARGET_COPY_OUT_VENDOR)/etc/public.libraries.txt
 
 # OMX
 PRODUCT_PACKAGES += \
@@ -321,6 +288,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/thermal-engine.conf:system/vendor/etc/thermal-engine.conf
 
+PRODUCT_PROPERTY_OVERRIDES += ro.hardware.power=msm8996
+
 # Dumpstate
 PRODUCT_PACKAGES += \
     android.hardware.dumpstate@1.0-service.msm8996
@@ -335,8 +304,11 @@ PRODUCT_PACKAGES += \
 
 # Ril
 PRODUCT_PACKAGES += \
+    android.hardware.broadcastradio@1.0-impl \
     libhtcril_db \
+    libprotobuf-cpp-full \
     librmnetctl \
+    rmnetcli \
     libshim_ril \
     libxml2
 
@@ -355,8 +327,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Seccomp
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/seccomp/mediacodec.policy:system/vendor/etc/seccomp_policy/mediacodec.policy \
-    $(LOCAL_PATH)/seccomp/mediaextractor.policy:system/vendor/etc/seccomp_policy/mediaextractor.policy
+    $(LOCAL_PATH)/seccomp/mediacodec.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediacodec.policy \
+    $(LOCAL_PATH)/seccomp/mediaextractor.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediaextractor.policy
 
 # Thermal config
 PRODUCT_PACKAGES += \
@@ -368,7 +340,8 @@ PRODUCT_PACKAGES += \
 
 # Vibrator
 PRODUCT_PACKAGES += \
-    android.hardware.vibrator@1.0-service.pme
+    android.hardware.vibrator@1.0-impl \
+    android.hardware.vibrator@1.0-service
 
 # Wifi
 PRODUCT_PACKAGES += \
@@ -387,15 +360,12 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
     $(LOCAL_PATH)/configs/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
 
-# Debug Loggy
+# VNDK-SP:
 PRODUCT_PACKAGES += \
-    loggy.sh
+    vndk-sp
 
 # VR
 PRODUCT_PACKAGES += \
     android.hardware.vr@1.0-impl \
     android.hardware.vr@1.0-service \
     vr.msm8996
-
-# MSM8996 Headers
-PRODUCT_VENDOR_KERNEL_HEADERS := hardware/qcom/msm8996/kernel-headers

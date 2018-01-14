@@ -1,5 +1,5 @@
 subdirs = [
-    "vibrator",
     "camera",
     "usb",
+    "libhidl",
 ]
