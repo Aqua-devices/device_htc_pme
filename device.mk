@@ -16,6 +16,7 @@
 #
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
+$(call inherit-product, vendor/aquarios/config/utils.mk)
 
 # Get non-open-source specific aspects
 $(call inherit-product-if-exists, vendor/htc/pme/pme-vendor.mk)
@@ -323,7 +324,6 @@ PRODUCT_COPY_FILES += \
 # Performance / IOP
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/etc/public.libraries.txt:$(TARGET_COPY_OUT_VENDOR)/etc/public.libraries.txt
-
 
 # OMX
 PRODUCT_PACKAGES += \

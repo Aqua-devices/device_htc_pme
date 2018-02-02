@@ -20,17 +20,14 @@ $(call inherit-product, device/htc/pme/device.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-# Inherit some common AOSiP stuff.
-$(call inherit-product, vendor/aosip/config/common_full_phone.mk)
+# Inherit some common AquariOS stuff.
+$(call inherit-product, vendor/aquarios/products/aquarios_phone.mk)
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := pme
-PRODUCT_NAME := aosip_pme
+PRODUCT_NAME := pme
 PRODUCT_MANUFACTURER := HTC
 PRODUCT_BRAND := HTC
-
-# Device Maintainer
-PRODUCT_BUILD_PROP_OVERRIDES += DEVICE_MAINTAINERS="Gergő Faggyas (fagyi)"
 
 $(call inherit-product-if-exists, vendor/htc/pme/pme-vendor.mk)
 
