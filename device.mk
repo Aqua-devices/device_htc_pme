@@ -186,6 +186,7 @@ PRODUCT_PACKAGES += \
     libdisplayconfig \
     libjni_livedisplay \
     liboverlay \
+    libqdMetaData.system \
     libtinyxml
 
 # DRM
