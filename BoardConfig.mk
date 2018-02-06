@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-ALLOW_MISSING_DEPENDENCIES=true
+# ALLOW_MISSING_DEPENDENCIES=true
 
 BOARD_VENDOR := htc
 
